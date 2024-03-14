@@ -1,0 +1,16 @@
+värdjas
+.home-data-section-tab-title {
+    flex: 1 1 0;
+    padding: 0.8rem 1rem;
+    box-sizing: border-box;
+    margin: 0;
+    background: 
+    min-height: var(--min-clickable-area);
+    min-width: unset;
+    white-space: unset;
+    word-break: break-word;
+}
+
+.home-data-section-tab-title-active, .home-data-section-tab-title-active:not([disabled]):hover {
+    background: rgb(236, 240, 242);
+}
