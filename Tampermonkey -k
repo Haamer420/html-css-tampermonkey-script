@@ -6,24 +6,65 @@
 // @author       You
 // @match        https://tahvel.edu.ee/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=edu.ee
-// @grant        none
+// @grant        GM_addStyle
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     setTimeout(() => {
-         document.querySelector("div").style.backgroundImage="url('https://i.pinimg.com/originals/fd/d0/0e/fdd00eff2cfe977daed3584f56eafbc9.gif')"
-        document.querySelector("div").style.backgroundColor='transparent'
-        document.getElementById("site-sidenav-wrapper").style.background='transparent'
-        document.getElementById("main-content").style.background="transparent"
-        document.getElementById("home-page-container").style.background="transparent"
-        document.getElementById("home-data-sections-container").style.background="transparent"
-    var imgElement = document.querySelector("img[alt='school logo; link to front page;'][aria-label='kooli logo; link esilehele;']");
-    if (imgElement) {
-        imgElement.src = "https://cdn.discordapp.com/attachments/1094980706289074247/1219174362859569213/054ce310-bc08-47c0-b750-470928c803da.gif?ex=660a579b&is=65f7e29b&hm=c54f24ba6eabe021f1a68583fd040681dc08eafe6fe3c31d5bf9f72586cc79a9&";
-         imgElement.style.maxHeight = "200px";
+        document.querySelector("div").style.backgroundImage = "url('https://i.pinimg.com/originals/fd/d0/0e/fdd00eff2cfe977daed3584f56eafbc9.gif')"
+        document.querySelector("div").style.backgroundColor = 'transparent'
+        document.getElementById("site-sidenav-wrapper").style.background = 'transparent'
+        document.getElementById("main-content").style.background = "transparent"
+        document.getElementById("home-page-container").style.background = "transparent"
+        document.getElementById("home-data-sections-container").style.background = "transparent"
+        var imgElement = document.querySelector("img[alt='school logo; link to front page;'][aria-label='kooli logo; link esilehele;']");
+        if (imgElement) {
+            imgElement.src = "https://cdn.discordapp.com/attachments/1094980706289074247/1219174362859569213/054ce310-bc08-47c0-b750-470928c803da.gif?ex=660a579b&is=65f7e29b&hm=c54f24ba6eabe021f1a68583fd040681dc08eafe6fe3c31d5bf9f72586cc79a9&";
+            imgElement.style.maxHeight = "200px";
+        }
 
-    }
     }, 1000)
+
+    window.addEventListener("load", () => {
+        const currentUrl = window.location.href;
+        console.log(currentUrl);
+    
+        if (currentUrl == "https://tahvel.edu.ee/#/students/journals") {
+            let grades = document.querySelectorAll("span.layout-align-start-center > span.bold")
+            console.log(grades)
+            let bad = ["2", "MA", "1", "X"]
+            for (let i = 0; i < grades.length; i++) {
+                const grade = grades[i];
+                console.log(grade)
+                if (bad.includes(grade.outerHTML))
+                {
+                    grade.style.color = 'red';
+                }
+
+            }
+        }
+    });
+
+    var css = `
+    .home-data-section-tab-title {
+        flex: 1 1 0;
+        padding: 0.8rem 1rem;
+        box-sizing: border-box;
+        margin: 0;
+        background: 
+        min-height: var(--min-clickable-area);
+        min-width: unset;
+        white-space: unset;
+        word-break: break-word;
+    }
+    
+    .home-data-section-tab-title-active, .home-data-section-tab-title-active:not([disabled]):hover {
+        background: rgb(236, 240, 242);
+    }
+    `;
+
+    // Injection rawr
+    GM_addStyle(css);
 })();

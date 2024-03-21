@@ -4,7 +4,7 @@ värdjas
     padding: 0.8rem 1rem;
     box-sizing: border-box;
     margin: 0;
-    background: 
+    background: white;
     min-height: var(--min-clickable-area);
     min-width: unset;
     white-space: unset;
